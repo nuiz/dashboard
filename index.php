@@ -29,7 +29,7 @@ if (isset($accessToken)) {
 else if(isset($_SESSION['facebook_access_token'])){
 	$fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
 	try {
-	  $response = $fb->get('/me/accounts?fields=likes,name');
+	  $response = $fb->get('/me/accounts?fields=likes,name,access_token');
 	  $graphEdge = $response->getGraphEdge();
 	  $data = [
 	  	"data"=> []
@@ -39,7 +39,8 @@ else if(isset($_SESSION['facebook_access_token'])){
 	  	$data["data"][] = [
 	  		"id"=> $graphNode->getField("id"),
 	  		"name"=> $graphNode->getField("name"),
-	  		"likes"=> $graphNode->getField("likes")
+	  		"likes"=> $graphNode->getField("likes"),
+	  		"access_token"=> $graphNode->getField("access_token")
 	  	];
 	  }
 	  
