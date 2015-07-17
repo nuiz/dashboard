@@ -59,7 +59,7 @@ else if(isset($_SESSION['facebook_access_token'])){
 	}
 }
 else {
-	$permissions = ['manage_pages', 'publish_pages']; // optional
+	$permissions = ['manage_pages', 'publish_pages', 'read_insights']; // optional
 	$loginUrl = $helper->getLoginUrl(BASE_URL, $permissions);
 	unset($_SESSION['facebook_access_token']);
 	echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
