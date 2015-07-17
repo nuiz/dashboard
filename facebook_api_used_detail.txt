@@ -1,0 +1,82 @@
+1. Facebook Attrition Rate
+
+unlike count daily /{page_id}/insights/page_fan_removes
+total like count daily /{page_id}/insights/page_fans
+
+=========================================================================================================
+
+2. Facebook Growth Rate
+
+like count daily /{page_id}/insights/page_fan_adds
+total like count daily /{page_id}/insights/page_fans
+
+=========================================================================================================
+
+3. Facebook Likes
+
+total like count daily /{page_id}/insights/page_fans
+
+=========================================================================================================
+
+4. Facebook Likes Cities
+
+like count city /{page_id}/insights/page_fans_city
+
+=========================================================================================================
+
+5. Facebook Likes Demographics
+
+like count gender and age /{page_id}/insights/page_fans_gender_age
+
+=========================================================================================================
+
+6. Facebook Likes Gender
+
+like count gender and age /{page_id}/insights/page_fans_gender_age
+
+=========================================================================================================
+
+7. Facebook Page Engagement
+
+engagement count /{page_id}/insights/page_engaged_users
+
+=========================================================================================================
+
+8. Facebook Page Engagement Rate
+
+engagement count /{page_id}/insights/page_engaged_users
+impressions count /{page_id}/insights/page_impressions
+
+=========================================================================================================
+
+9. Facebook Page Reach
+
+impressions organic count /{page_id}/insights/page_impressions_organic
+impressions paid /{page_id}/insights/page_impressions_paid
+
+=========================================================================================================
+
+10. Facebook Pageviews
+
+page view organic count /{page_id}/insights/page_views
+
+=========================================================================================================
+
+11. Facebook Unique Visitors
+
+impression unique count /{page_id}/insights/page_impressions_unique
+
+=========================================================================================================
+
+12. Facebook Viral Reach
+
+impression viral count /{page_id}/insights/page_impressions_viral
+
+=========================================================================================================
+
+13. People Talking About
+
+share count /{page_id}/insights/page_positive_feedback_by_type
+	* get like parameter mean share count
+
+=========================================================================================================
