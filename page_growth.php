@@ -17,7 +17,7 @@ try {
 		]));
 	$jsonTotalLikes = json_decode($fbRes, true);
 
-	$fbRes = file_get_contents($baseUrl."/me/insights/page_fan_removes/day?".http_build_query([
+	$fbRes = file_get_contents($baseUrl."/me/insights/page_fan_adds/day?".http_build_query([
 		"since"=> $startDateTs,
 		"until"=> $endDateTs,
 		"access_token"=> $_GET['access_token']
