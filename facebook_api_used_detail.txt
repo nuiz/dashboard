@@ -1,3 +1,8 @@
+##### Facebook explorer tool ######
+https://developers.facebook.com/tools/explorer
+
+=========================================================================================================
+
 1. Facebook Attrition Rate
 
 unlike count daily /{page_id}/insights/page_fan_removes
