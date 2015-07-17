@@ -17,24 +17,14 @@ try {
 		]));
 	$jsonTotalLikes = json_decode($fbRes, true);
 
-	$fbRes = file_get_contents($baseUrl."/me/insights/page_fan_removes/day?".http_build_query([
-		"since"=> $startDateTs,
-		"until"=> $endDateTs,
-		"access_token"=> $_GET['access_token']
-		]));
-	$jsonUnlikes = json_decode($fbRes, true);
-
 	$res = [
 		"data"=> []
 	];
 	foreach($jsonTotalLikes["data"][0]["values"] as $key => $value){
 		$totalLikeCount = $jsonTotalLikes["data"][0]["values"][$key]["value"];
-		$unlikeDayCount = $jsonUnlikes["data"][0]["values"][$key]["value"];
 		$obj = [
 			"date"=> substr($jsonTotalLikes["data"][0]["values"][$key]["end_time"],0,10),
-			"total_like_daily"=> $totalLikeCount,
-			"unlike_daily"=> $unlikeDayCount,
-			"attrition_rate"=> $unlikeDayCount/$totalLikeCount,
+			"total_like_daily"=> $totalLikeCount
 		];
 		$res['data'][] = $obj;
 	}
