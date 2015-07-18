@@ -1,22 +1,20 @@
 <?php
 require("bootstrap.php");
 
-$config = include("config.php");
+$config = include("config_facebook.php");
 $baseUrl = "https://graph.facebook.com";
+$fb = new Facebook\Facebook($config);
 
 try {
-	$fbRes = file_get_contents($baseUrl."/me/insights/page_fans_gender_age?".http_build_query([
-		"access_token"=> $_GET['access_token']
-		]));
-	$json = json_decode($fbRes, true);
+	$url = "/me/insights/page_fans_gender_age";	
+	$arr = $fb->get($url, $_GET['access_token'])->getGraphEdge()->asArray();
 
 	$res = [
-		"gender"=> [
-		],
-		"age"=> [
-		]
+		"gender"=> [],
+		"age"=> [],
+		"gender_age"=> []
 	];
-	foreach($json["data"][0]["values"][0]['value'] as $key => $value){
+	foreach($arr[0]["values"][0]['value'] as $key => $value){
 		list($gender, $age) = explode(".", $key);
 		if(!isset($res["gender"][$gender])){
 			$res["gender"][$gender] = 0;
@@ -26,6 +24,7 @@ try {
 			$res["age"][$age] = 0;
 		}
 		$res["age"][$age] += $value;
+		$res["gender_age"][$key] = $value;
 	}
 
 	header("Content-type: application/json");

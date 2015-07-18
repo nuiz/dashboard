@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Facebook\\' => array($vendorDir . '/facebook/php-sdk-v4/src/Facebook'),
+    'DashboardSocial\\' => array($baseDir . '/src/DashboardSocial'),
 );

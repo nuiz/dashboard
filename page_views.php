@@ -1,29 +1,27 @@
 <?php
 require("bootstrap.php");
 
-$config = include("config.php");
+$config = include("config_facebook.php");
 $baseUrl = "https://graph.facebook.com";
-// $fb = new Facebook\Facebook($config);
-// $fb->setDefaultAccessToken($_GET['access_token']);
+$fb = new Facebook\Facebook($config);
 
 $startDateTs = strtotime($_GET['date_start']." 00:00:00");
 $endDateTs = strtotime($_GET['date_end']." 23:59:59");
 
 try {
-	$fbRes = file_get_contents($baseUrl."/me/insights/page_views?".http_build_query([
+	$url = "/me/insights/page_views?".http_build_query([
 		"since"=> $startDateTs,
-		"until"=> $endDateTs,
-		"access_token"=> $_GET['access_token']
-		]));
-	$jsonTotal = json_decode($fbRes, true);
+		"until"=> $endDateTs
+		]);	
+	$arr = $fb->get($url, $_GET['access_token'])->getGraphEdge()->asArray();
 
 	$res = [
 		"data"=> []
 	];
-	foreach($jsonTotal["data"][0]["values"] as $key => $value){
-		$totalCount = $jsonTotal["data"][0]["values"][$key]["value"];
+	foreach($arr[0]["values"] as $key => $value){
+		$totalCount = $value["value"];
 		$obj = [
-			"date"=> substr($jsonTotal["data"][0]["values"][$key]["end_time"],0,10),
+			"date"=> $value["end_time"]->format("Y-m-d"),
 			"view_daily"=> $totalCount
 		];
 		$res['data'][] = $obj;

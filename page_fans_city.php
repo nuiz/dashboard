@@ -1,17 +1,16 @@
 <?php
 require("bootstrap.php");
 
-$config = include("config.php");
+$config = include("config_facebook.php");
 $baseUrl = "https://graph.facebook.com";
+$fb = new Facebook\Facebook($config);
 
 try {
-	$fbRes = file_get_contents($baseUrl."/me/insights/page_fans_city?".http_build_query([
-		"access_token"=> $_GET['access_token']
-		]));
-	$json = json_decode($fbRes, true);
+	$url = "/me/insights/page_fans_city?";
+	$arr = $fb->get($url, $_GET['access_token'])->getGraphEdge()->asArray();
 
 	$res = [];
-	foreach($json["data"][0]["values"][0]['value'] as $key => $value){
+	foreach($arr[0]["values"][0]['value'] as $key => $value){
 		$location = explode(', ', $key);
 		if(count($location)==2){
 			$res[$location[0]] = $value;
