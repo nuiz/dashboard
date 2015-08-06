@@ -20,9 +20,9 @@ class DashboardFacebook {
 		return $this->getRedirectLoginHelper()->getAccessToken();
 	}
 
-	public function getLoginUrl(){
+	public function getLoginUrl($url = BASE_URL){
 		$permissions = ['manage_pages', 'publish_pages', 'read_insights'];
-		return $this->getRedirectLoginHelper()->getLoginUrl(BASE_URL, $permissions);
+		return $this->getRedirectLoginHelper()->getLoginUrl($url, $permissions);
 	}
 
 	public function setAccessToken($accessToken){
